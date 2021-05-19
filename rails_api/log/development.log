@@ -290,3 +290,61 @@ Filter chain halted as :ensure_params_exist rendered or redirected
 Completed 400 Bad Request in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 172)
 
 
+Started POST "/api/v1/sign_up" for ::1 at 2021-05-19 14:58:46 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::RegistrationsController#create as JSON
+Completed 500 Internal Server Error in 195ms (ActiveRecord: 0.0ms | Allocations: 80234)
+
+
+  
+NameError (undefined local variable or method `bad_request' for #<Api::V1::RegistrationsController:0x00007fcaa0319170>
+Did you mean?  @_request):
+  
+app/controllers/api/v1/registrations_controller.rb:21:in `ensure_params_exist'
+Started POST "/api/v1/sign_up?user[email]=johnsnow1@gmail.com&user[password]=[FILTERED]&user[password_confirmation]=[FILTERED]" for ::1 at 2021-05-19 15:00:54 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"johnsnow1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "johnsnow1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 437ms (ActiveRecord: 1.1ms | Allocations: 93444)
+
+
+  
+NameError (undefined local variable or method `unprocessable_entity' for #<Api::V1::RegistrationsController:0x00007fca9fd4a4b0>):
+  
+app/controllers/api/v1/registrations_controller.rb:9:in `create'
+Started POST "/api/v1/sign_up?user[email]=johnsnow1@gmail.com&user[password]=[FILTERED]&user[password_confirmation]=[FILTERED]" for ::1 at 2021-05-19 15:01:43 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"johnsnow1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "johnsnow1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+Completed 422 Unprocessable Entity in 247ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 9847)
+
+
+Started POST "/api/v1/sign_up?user[email]=johnsnow2@gmail.com&user[password]=[FILTERED]&user[password_confirmation]=[FILTERED]" for ::1 at 2021-05-19 15:02:06 -0400
+Processing by Api::V1::RegistrationsController#create as JSON
+  Parameters: {"user"=>{"email"=>"johnsnow2@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "johnsnow2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."authentication_token" = ?[0m  [["authentication_token", "6dy89Q7srnYiJ9meJPb5"]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[36mUser Create (2.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "authentication_token") VALUES (?, ?, ?, ?, ?)[0m  [["email", "johnsnow2@gmail.com"], ["encrypted_password", "$2a$12$hfGsJvNxVk5XBGqzq8QDMOEFBF5obDfZLtbbYOhix1AOPDkg1xqMm"], ["created_at", "2021-05-19 19:02:06.294540"], ["updated_at", "2021-05-19 19:02:06.294540"], ["authentication_token", "6dy89Q7srnYiJ9meJPb5"]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:6:in `create'
+Completed 200 OK in 243ms (Views: 0.5ms | ActiveRecord: 6.1ms | Allocations: 4951)
+
+
