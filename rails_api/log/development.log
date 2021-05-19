@@ -348,3 +348,60 @@ Processing by Api::V1::RegistrationsController#create as JSON
 Completed 200 OK in 243ms (Views: 0.5ms | ActiveRecord: 6.1ms | Allocations: 4951)
 
 
+Started POST "/api/v1/sign_in?sign_in[email]=johnsnow@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-19 15:30:58 -0400
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsnow@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsnow@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:20:in `load_user'
+Completed 200 OK in 231ms (Views: 0.5ms | ActiveRecord: 1.5ms | Allocations: 9204)
+
+
+Started POST "/api/v1/sign_in?sign_in[email]=johnsnow1@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-19 15:32:27 -0400
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsnow1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsnow1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:20:in `load_user'
+Completed 401 Unauthorized in 228ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1110)
+
+
+Started POST "/api/v1/sign_in?sign_in[email]=johnsnow1@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-19 15:32:39 -0400
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsnow1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsnow1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:20:in `load_user'
+Completed 200 OK in 232ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1320)
+
+
+Started POST "/api/v1/sign_in?sign_in[email]=johnsno@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-19 15:33:05 -0400
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsno@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsno@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:20:in `load_user'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms | Allocations: 1023)
+
+
+  
+ArgumentError (Unrecognized status code :failure):
+  
+app/controllers/concerns/response.rb:4:in `json_response'
+app/controllers/api/v1/sessions_controller.rb:24:in `load_user'
+Started POST "/api/v1/sign_in?sign_in[email]=johnsno@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-19 15:39:04 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsno@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsno@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:20:in `load_user'
+Filter chain halted as :load_user rendered or redirected
+Completed 400 Bad Request in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1635)
+
+
+Started POST "/api/v1/sign_in?sign_in[email]=johnsnow@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-19 15:40:30 -0400
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsnow@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsnow@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:20:in `load_user'
+Completed 200 OK in 248ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 6702)
+
+
