@@ -405,3 +405,97 @@ Processing by Api::V1::SessionsController#create as JSON
 Completed 200 OK in 248ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 6702)
 
 
+Started POST "/api/v1/sign_in" for ::1 at 2021-05-24 11:47:16 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#create as JSON
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 272)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: sign_in):
+  
+app/controllers/api/v1/sessions_controller.rb:24:in `sign_in_params'
+Started POST "/api/v1/sign_in?sign_in[email]=johnsnow@gmail.com&sign_in[password]=[FILTERED]" for ::1 at 2021-05-24 11:49:05 -0400
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"sign_in"=>{"email"=>"johnsnow@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "johnsnow@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:28:in `load_user'
+Completed 200 OK in 249ms (Views: 1.8ms | ActiveRecord: 1.5ms | Allocations: 10476)
+
+
+Started DELETE "/api/v1/log_out" for ::1 at 2021-05-24 11:52:34 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/v1/log_out"):
+  
+actionpack (6.0.3.7) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.7) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/api/v1/log_out" for ::1 at 2021-05-24 12:01:11 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT ?[0m  [["authentication_token", "rY99QnR8vNYbp5exJ7rT"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:37:in `valid_token'
+DEPRECATION WARNING: update_attributes is deprecated and will be removed from Rails 6.1 (please, use update instead) (called from generate_new_authentication_token at /Users/scottlee/Desktop/Flatiron-111620/Phase6/Post-Flatiron-Projects/API-Practice/API-Practice-Backend/rails_api/app/models/user.rb:10)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:10:in `generate_new_authentication_token'
+  [1m[36mUser Update (3.6ms)[0m  [1m[33mUPDATE "users" SET "authentication_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["authentication_token", "oECoGamomQVWtUB3HuCZSRjY"], ["updated_at", "2021-05-24 16:01:11.973609"], ["id", 1]]
+  ↳ app/models/user.rb:10:in `generate_new_authentication_token'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:10:in `generate_new_authentication_token'
+Completed 200 OK in 45ms (Views: 0.2ms | ActiveRecord: 5.3ms | Allocations: 9883)
+
+
+Started DELETE "/api/v1/log_out" for ::1 at 2021-05-24 12:02:15 -0400
+Processing by Api::V1::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT ?[0m  [["authentication_token", "rY99QnR8vNYbp5exJ7r"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:37:in `valid_token'
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms | Allocations: 691)
+
+
+  
+ArgumentError (Unrecognized status code :failure):
+  
+app/controllers/concerns/response.rb:4:in `json_response'
+app/controllers/api/v1/sessions_controller.rb:41:in `valid_token'
+Started DELETE "/api/v1/log_out" for ::1 at 2021-05-24 12:02:33 -0400
+Processing by Api::V1::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT ?[0m  [["authentication_token", "rY99QnR8vNYbp5exJ7rT"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:37:in `valid_token'
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.1ms | Allocations: 688)
+
+
+  
+ArgumentError (Unrecognized status code :failure):
+  
+app/controllers/concerns/response.rb:4:in `json_response'
+app/controllers/api/v1/sessions_controller.rb:41:in `valid_token'
+Started DELETE "/api/v1/log_out" for ::1 at 2021-05-24 13:29:28 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::SessionsController#destroy as JSON
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT ?[0m  [["authentication_token", "rY99QnR8vNYbp5exJ7rT"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:37:in `valid_token'
+Filter chain halted as :valid_token rendered or redirected
+Completed 408 Request Timeout in 9ms (Views: 0.2ms | ActiveRecord: 6.6ms | Allocations: 1395)
+
+
